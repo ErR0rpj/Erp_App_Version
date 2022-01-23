@@ -28,8 +28,7 @@ class BlocProviders {
 
   final _loginBlocProvicer = BlocProvider<LoginBloc>.value(value: _loginBloc);
 
-  final _storeBlocProvider =
-      BlocProvider<StoreBloc>(create: (BuildContext context) => _storeBloc);
+  final _storeBlocProvider = BlocProvider<StoreBloc>.value(value: _storeBloc);
 
   List<BlocProvider> getMainProviders() {
     return [_authBlocProvider, _alertsBlocProvider, _storeBlocProvider];
@@ -55,5 +54,6 @@ class BlocProviders {
     _authBloc.close();
     _loginBloc.close();
     _alertsBloc.close();
+    _storeBloc.close();
   }
 }

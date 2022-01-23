@@ -17,6 +17,8 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
       yield* _mapGetStoreName(event);
     } else if (event is GetStoreItems) {
       yield* _mapGetStoreItems(event);
+    } else if (event is GetStoreItemBatches) {
+      yield* _mapStoreGetItemBatch(event);
     }
   }
 
@@ -29,16 +31,29 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
       }
     } catch (err) {
       print(err.toString());
+      add(GetStoreItems());
       //TODO: Add read failure
     }
   }
 
   Stream<StoreState> _mapGetStoreItems(GetStoreItems event) async* {
     try {
-      print("trying to get tiems");
       final storeItems = await _storeRepository.getStoreData();
       if (storeItems.isNotEmpty) {
         yield StoreDataLoaded(storeName: state.storeName, itemData: storeItems);
+      }
+    } catch (err) {
+      print(err);
+      //TODO: Add read failure
+    }
+  }
+
+  Stream<StoreState> _mapStoreGetItemBatch(GetStoreItemBatches event) async* {
+    try {
+      final storeItems = await _storeRepository.getItemBatchData(event.itemId);
+      if (storeItems.isNotEmpty) {
+        print(storeItems.length);
+        //yield StoreDataLoaded(storeName: state.storeName, itemData: storeItems);
       }
     } catch (err) {
       print(err);

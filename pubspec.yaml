@@ -40,6 +40,7 @@ dependencies:
   flutter_bloc: ^6.1.1
   meta: ^1.7.0
   flutter_svg: ^1.0.1
+  expandable: ^5.0.1
 
 dev_dependencies:
   flutter_test:

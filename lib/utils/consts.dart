@@ -67,7 +67,7 @@ const APP_TITLE = 'Flutter Scaffold';
 const SECURE_STORAGE_TOKEN_KEY = 'token';
 
 ///////////////////////////Server\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-const String SERVER_URL = 'https://goodztech.com/';
+const String SERVER_URL = 'https://moodigrocery.com/';
 const int SERVER_TIMEOUT = 15;
 const String HTTP_CONTENT_TYPE = 'application/json';
 
@@ -75,6 +75,14 @@ const String USER_LOGIN_URL = '/api/user/login';
 
 const String STORE_NAME_URL = '/api/user/store';
 const String STORE_ITEMS_URL = '/api/user/items';
+var STORE_BATCHES_URL = (itemCode) => '/api/user/getbatch?ItemCode=$itemCode';
+
+const String CREATE_ITEM_URL = '/api/user/addItem';
+const String UPDATE_ITEM_URL = '/api/user/updateItemDetails';
+const String CREATE_BATCH_URL = '/api/user/addBatch';
+const String UPDATE_BATCH_URL = '/api/user/updateBatchDetails';
+const String DELETE_BATCH_URL = '/api/user/deleteItem';
+const String DELETE_ITEM_URL = '/api/user/deleteBatch';
 //Errors
 const String NO_CONNECTION_ERROR = 'Host Not Found';
 const String BAD_REQUEST_ERROR = 'Bad Request';
@@ -86,6 +94,8 @@ const String HOME_PATH = '/';
 const String SPLASH_PATH = '/splash';
 const String LOGIN_PATH = '/login';
 const String REGISTER_PATH = '/register';
+const String ITEM_ADDEDIT_PATH = '/item';
+const String BATCH_ADDEDIT_PATH = '/batch';
 
 //Auth Page Consts
 const double AUTH_PAGE_BUFFER_MULTIPLE = 1.2;
@@ -96,7 +106,7 @@ const Color AUTH_BUTTON_COLOR = Color(0xFF073A93);
 const Radius AUTH_BUTTON_RADIUS = Radius.circular(5);
 const String EMAIL_PATTERN =
     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-const int MINIMUM_NAME_LENGTH = 4;
+const int MINIMUM_NAME_LENGTH = 1;
 const int MINIMUM_PASSWORD_LENGTH = 6;
 const EdgeInsets FORM_PADDING = EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0);
 const EdgeInsets FORM_REGISTER_PADDING =

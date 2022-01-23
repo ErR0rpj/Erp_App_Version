@@ -1,7 +1,7 @@
 // lib/blocs/login/login_state.dart
 
 import 'package:equatable/equatable.dart';
-import 'package:inventory_app/models/item.dart';
+import 'package:inventory_app/models/models.dart';
 
 abstract class StoreState extends Equatable {
   final String storeName;
@@ -33,13 +33,15 @@ class StoreDataLoaded extends StoreState {
   List<Object> get props => [storeName, itemData];
 }
 
-class StoreItemsLoaded extends StoreState {
+class StoreItemBatchLoaded extends StoreState {
   @override
   final String storeName;
 
-  const StoreItemsLoaded({required this.storeName})
+  final List<Batch> batchData;
+
+  const StoreItemBatchLoaded({required this.storeName, required this.batchData})
       : super(storeName: storeName);
 
   @override
-  List<Object> get props => [storeName];
+  List<Object> get props => [storeName, batchData];
 }

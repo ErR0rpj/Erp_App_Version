@@ -9,7 +9,7 @@ import 'package:inventory_app/utils/consts.dart';
 import 'package:inventory_app/blocs/bloc_providers.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({Key? key}) : super(key: key);
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -23,8 +23,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   initState() {
-    _emailInputController = new TextEditingController();
-    _pwdInputController = new TextEditingController();
+    _emailInputController = TextEditingController();
+    _pwdInputController = TextEditingController();
     super.initState();
   }
 

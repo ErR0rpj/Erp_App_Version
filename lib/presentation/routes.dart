@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inventory_app/blocs/bloc_providers.dart';
+import 'package:inventory_app/presentation/layouts/AddEditBatch.dart';
+import 'package:inventory_app/presentation/layouts/AddEditItem.dart';
 import 'package:inventory_app/utils/consts.dart';
 import 'package:inventory_app/presentation/layouts/HomePage.dart';
 import 'package:inventory_app/presentation/layouts/SplashPage.dart';
@@ -26,6 +28,18 @@ class Routes {
             builder: (_) => MultiBlocProvider(
                 providers: BlocProviders().getMainProviders(),
                 child: HomePage()),
+            settings: settings);
+      case ITEM_ADDEDIT_PATH:
+        return MaterialPageRoute(
+            builder: (_) => MultiBlocProvider(
+                providers: BlocProviders().getMainProviders(),
+                child: AddEditItem()),
+            settings: settings);
+      case BATCH_ADDEDIT_PATH:
+        return MaterialPageRoute(
+            builder: (_) => MultiBlocProvider(
+                providers: BlocProviders().getMainProviders(),
+                child: AddEditBatch()),
             settings: settings);
       default:
         return MaterialPageRoute(

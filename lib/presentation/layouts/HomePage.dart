@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_app/blocs/blocs.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:inventory_app/blocs/store/store_bloc.dart';
-import 'package:inventory_app/blocs/store/store_state.dart';
+import 'package:inventory_app/blocs/store/store.dart';
 import 'package:inventory_app/presentation/layouts/InventoryData.dart';
 import 'package:inventory_app/utils/consts.dart';
+import 'package:inventory_app/blocs/store/store_event.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -27,8 +27,20 @@ class _HomePageState extends State<HomePage> {
         final storeBlocState = context.watch<StoreBloc>().state;
         if (storeBlocState is StoreNameLoaded) {
           return Center(
-            child: Text('Loading Data for ${storeBlocState.storeName}',
-                style: const TextStyle(fontWeight: FontWeight.bold)),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Loading Data for ${storeBlocState.storeName}',
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                MaterialButton(
+                  onPressed: () {
+                    context.read<StoreBloc>().add(GetStoreItems());
+                  },
+                  child: const Text('Fetch Item Data'),
+                )
+              ],
+            ),
           );
         } else if (storeBlocState is StoreDataLoaded) {
           return InventoryData(

@@ -21,3 +21,11 @@ class GetStoreItems extends StoreEvent {
   @override
   List<Object> get props => [];
 }
+
+class GetStoreItemBatches extends StoreEvent {
+  final String itemId;
+  GetStoreItemBatches({required this.itemId});
+
+  @override
+  List<Object> get props => [];
+}

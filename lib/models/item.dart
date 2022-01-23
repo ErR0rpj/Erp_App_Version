@@ -42,9 +42,10 @@ class Item {
     name = json['Name'];
     company = json['Company'];
     category = json['Category'];
-    totalUnits = json['Total_Units'].runtimeType == double
-        ? json['Total_Units']
-        : json['Total_Units'].toDouble();
+    totalUnits =
+        json['Total_Units'] != null && json['Total_Units'].runtimeType == double
+            ? json['Total_Units']
+            : json['Total_Units']?.toDouble();
     weightVolume = json['Weight_Volume'];
     description = json['Description'];
     unit = json['Unit'];
