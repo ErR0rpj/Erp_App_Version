@@ -100,7 +100,7 @@ class _InventoryDataState extends State<InventoryData> {
                             ),
                             disabledBorder: InputBorder.none,
                             suffixIcon: Icon(Icons.search),
-                            hintText: 'Enter Device name or barcode',
+                            hintText: 'Enter  name or barcode',
                             errorStyle: TextStyle(height: 0),
                             fillColor: Colors.white),
                         controller: _itemSearchController,
@@ -211,7 +211,7 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                       text: TextSpan(
                         style: const TextStyle(
                           fontSize: 16,
-                          color: Colors.deepPurple,
+                          color: Colors.black,
                         ),
                         children: <TextSpan>[
                           const TextSpan(
@@ -230,7 +230,7 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                       text: TextSpan(
                         style: const TextStyle(
                           fontSize: 16,
-                          color: Colors.deepPurple,
+                          color: Colors.black,
                         ),
                         children: <TextSpan>[
                           const TextSpan(
@@ -251,7 +251,7 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                           text: TextSpan(
                             style: const TextStyle(
                               fontSize: 16,
-                              color: Colors.deepPurple,
+                              color: Colors.black,
                             ),
                             children: <TextSpan>[
                               const TextSpan(
@@ -268,7 +268,7 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                           text: TextSpan(
                             style: const TextStyle(
                               fontSize: 16,
-                              color: Colors.deepPurple,
+                              color: Colors.black,
                             ),
                             children: <TextSpan>[
                               const TextSpan(
@@ -292,7 +292,7 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                           text: TextSpan(
                             style: const TextStyle(
                               fontSize: 16,
-                              color: Colors.deepPurple,
+                              color: Colors.black,
                             ),
                             children: <TextSpan>[
                               const TextSpan(
@@ -309,11 +309,11 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                           text: TextSpan(
                             style: const TextStyle(
                               fontSize: 16,
-                              color: Colors.deepPurple,
+                              color: Colors.black,
                             ),
                             children: <TextSpan>[
                               const TextSpan(
-                                  text: 'Tot Units: ',
+                                  text: 'Total Units: ',
                                   style:
                                       TextStyle(fontWeight: FontWeight.bold)),
                               TextSpan(
@@ -333,7 +333,7 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                           text: TextSpan(
                             style: const TextStyle(
                               fontSize: 16,
-                              color: Colors.deepPurple,
+                              color: Colors.black,
                             ),
                             children: <TextSpan>[
                               const TextSpan(
@@ -350,7 +350,7 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                           text: TextSpan(
                             style: const TextStyle(
                               fontSize: 16,
-                              color: Colors.deepPurple,
+                              color: Colors.black,
                             ),
                             children: <TextSpan>[
                               const TextSpan(
@@ -441,7 +441,9 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: batches.length,
         itemBuilder: (BuildContext context, int index) {
-          return Padding(
+          return  Container(
+          color: Colors.amber[100],
+          child:Padding(
               padding: const EdgeInsets.only(
                 left: 10,
               ),
@@ -793,7 +795,7 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                     height: V_SMALL_PAD,
                   ),
                 ],
-              ));
+              ),),);
         },
         separatorBuilder: (BuildContext context, int index) => const Divider(),
       );
@@ -801,11 +803,12 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
 
     return ExpandableNotifier(
         child: Container(
-      color: Colors.amber[600],
+      color: Colors.amber[200],
       padding: const EdgeInsets.only(left: 10.0, right: 0, bottom: 0),
       child: ScrollOnExpand(
         child: ExpandablePanel(
           header: buildHeader(),
+          // color: Colors.white,
           expanded: buildExpanded(),
           collapsed: Container(),
         ),
