@@ -13,6 +13,7 @@ class Item {
   String? description;
   String? unit;
   String? barcode;
+  num? shelfLife;
 
   Item(
       {this.notifLimit,
@@ -28,6 +29,7 @@ class Item {
       this.weightVolume,
       this.description,
       this.unit,
+      this.shelfLife,
       this.barcode});
 
   Item.fromJson(Map<String, dynamic> json) {
@@ -50,6 +52,7 @@ class Item {
     description = json['Description'];
     unit = json['Unit'];
     barcode = json['Barcode'];
+    shelfLife = json['ShelfLife'];
   }
 
   Map<String, dynamic> toJson() {
@@ -70,6 +73,7 @@ class Item {
     data['Description'] = this.description;
     data['Unit'] = this.unit;
     data['Barcode'] = this.barcode;
+    data['ShelfLife'] = this.shelfLife;
     return data;
   }
 }

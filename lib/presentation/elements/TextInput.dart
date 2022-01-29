@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_app/utils/consts.dart';
 
-class TextInput extends StatelessWidget {
+class TextFieldInput extends StatelessWidget {
   final TextEditingController inputController;
   final String? Function(String?) validator;
   final TextInputType keyboardType;
@@ -10,7 +10,7 @@ class TextInput extends StatelessWidget {
   final IconData? icon;
   final Function? onPressedIcon;
   final EdgeInsets fieldPadding;
-  TextInput(
+  TextFieldInput(
       {required this.inputController,
       required this.validator,
       required this.keyboardType,

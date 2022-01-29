@@ -64,13 +64,13 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        TextInput(
+                        TextFieldInput(
                             fieldName: 'Email',
                             validator: emailValidator,
                             keyboardType: TextInputType.emailAddress,
                             inputController: _emailInputController),
                         const SizedBox(height: MEDIUM_PAD),
-                        TextInput(
+                        TextFieldInput(
                             fieldName: 'Password',
                             icon: _isPwdObscure
                                 ? Icons.remove_red_eye_rounded

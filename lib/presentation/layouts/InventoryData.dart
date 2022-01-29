@@ -8,8 +8,8 @@ import 'package:inventory_app/blocs/store/store_event.dart';
 import 'package:inventory_app/blocs/store/store_state.dart';
 import 'package:inventory_app/models/batch.dart';
 import 'package:inventory_app/models/item.dart';
+import 'package:inventory_app/presentation/elements/Dialog.dart';
 import 'package:inventory_app/utils/consts.dart';
-import 'package:provider/src/provider.dart';
 import 'package:inventory_app/repos/repos.dart';
 
 class InventoryData extends StatefulWidget {
@@ -139,7 +139,7 @@ class _InventoryDataState extends State<InventoryData> {
                       (value) => BlocProvider.of<StoreBloc>(context)
                           .add(GetStoreItems()));
                 },
-                icon: const Icon(Icons.add_box))
+                icon: const Icon(Icons.add_box)),
           ],
         ),
         const SizedBox(
@@ -180,17 +180,22 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
 
   @override
   Widget build(BuildContext context) {
+    deleteItem() async {
+      await StoreRepository().deleteItem(widget.itemData.sId ?? '');
+      BlocProvider.of<StoreBloc>(context).add(GetStoreItems());
+    }
+
     buildHeader() {
       return Builder(
         builder: (context) {
           var controller = ExpandableController.of(context);
-          if (batches.length > 0 &&
+          if (batches.isNotEmpty &&
               widget.itemData.sId != batches[0].itemCode) {
             controller?.expanded = false;
           }
           return Container(
             width: double.infinity,
-            height: 50.0,
+            height: 25.0 * 5,
             alignment: Alignment.center,
             child: Stack(children: [
               Container(
@@ -199,20 +204,166 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                     const EdgeInsets.fromLTRB(SMALL_PAD, V_SMALL_PAD, 0, 0),
                 alignment: Alignment.centerLeft,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Name: ${widget.itemData.name}',
-                      style: Theme.of(context)
-                          .textTheme
-                          .button
-                          ?.copyWith(color: Colors.deepPurple),
+                    RichText(
+                      text: TextSpan(
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.deepPurple,
+                        ),
+                        children: <TextSpan>[
+                          const TextSpan(
+                              text: 'Name: ',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          TextSpan(
+                            text: '${widget.itemData.name}',
+                          ),
+                        ],
+                      ),
                     ),
-                    Text(
-                      'Barcode: ${widget.itemData.barcode}',
-                      style: Theme.of(context)
-                          .textTheme
-                          .button
-                          ?.copyWith(color: Colors.deepPurple),
+                    const SizedBox(
+                      height: V_SMALL_PAD,
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.deepPurple,
+                        ),
+                        children: <TextSpan>[
+                          const TextSpan(
+                              text: 'Barcode: ',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          TextSpan(
+                            text: '${widget.itemData.barcode}',
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: V_SMALL_PAD,
+                    ),
+                    Row(
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.deepPurple,
+                            ),
+                            children: <TextSpan>[
+                              const TextSpan(
+                                  text: 'HSN: ',
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)),
+                              TextSpan(
+                                text: '${widget.itemData.hSNCode}',
+                              ),
+                            ],
+                          ),
+                        ),
+                        RichText(
+                          text: TextSpan(
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.deepPurple,
+                            ),
+                            children: <TextSpan>[
+                              const TextSpan(
+                                  text: 'Company: ',
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)),
+                              TextSpan(
+                                text: '${widget.itemData.company}',
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: V_SMALL_PAD,
+                    ),
+                    Row(
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.deepPurple,
+                            ),
+                            children: <TextSpan>[
+                              const TextSpan(
+                                  text: 'Cat: ',
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)),
+                              TextSpan(
+                                text: '${widget.itemData.category}',
+                              ),
+                            ],
+                          ),
+                        ),
+                        RichText(
+                          text: TextSpan(
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.deepPurple,
+                            ),
+                            children: <TextSpan>[
+                              const TextSpan(
+                                  text: 'Tot Units: ',
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)),
+                              TextSpan(
+                                text: '${widget.itemData.totalUnits}',
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: V_SMALL_PAD,
+                    ),
+                    Row(
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.deepPurple,
+                            ),
+                            children: <TextSpan>[
+                              const TextSpan(
+                                  text: 'Wt/Vol: ',
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)),
+                              TextSpan(
+                                text: '${widget.itemData.weightVolume}',
+                              ),
+                            ],
+                          ),
+                        ),
+                        RichText(
+                          text: TextSpan(
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.deepPurple,
+                            ),
+                            children: <TextSpan>[
+                              const TextSpan(
+                                  text: 'Unit: ',
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)),
+                              TextSpan(
+                                text: '${widget.itemData.unit}',
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
                     ),
                   ],
                 ),
@@ -253,11 +404,35 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                             barcode: widget.itemData.barcode,
                             userId: widget.itemData.userId)),
                     icon: const Icon(Icons.add)),
+              ),
+              Positioned(
+                right: 80,
+                child: IconButton(
+                    onPressed: () async {
+                      showDialogWrapper(
+                          context: context,
+                          affirmAction: () => deleteItem(),
+                          dialogMessage:
+                              'Are you sure you want to Delete this item?',
+                          title: 'Delete Item',
+                          barrierDismissible: true);
+                    },
+                    icon: const Icon(Icons.delete)),
               )
             ]),
           );
         },
       );
+    }
+
+    deleteBatch(Batch batchData) async {
+      await StoreRepository().deleteBatch(batchData.barcode ?? '',
+          batchData.itemCode ?? '', batchData.date ?? '');
+      List<Batch> batcheData =
+          await StoreRepository().getItemBatchData(widget.itemData.sId!);
+      setState(() {
+        batches = batcheData;
+      });
     }
 
     buildExpanded() {
@@ -274,8 +449,34 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                 children: [
                   Row(
                     children: [
-                      Text('MRP : ${batches[index].mRP}'),
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            const TextSpan(
+                                text: 'Sno.: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '${index + 1}',
+                            ),
+                          ],
+                        ),
+                      ),
                       Expanded(child: Container()),
+                      IconButton(
+                          icon: const Icon(Icons.delete),
+                          onPressed: () {
+                            showDialogWrapper(
+                                context: context,
+                                affirmAction: () => deleteBatch(batches[index]),
+                                dialogMessage:
+                                    'Are you sure you want to Delete this batch?',
+                                title: 'Delete Batch',
+                                barrierDismissible: true);
+                          }),
                       IconButton(
                           icon: const Icon(Icons.edit),
                           onPressed: () => Navigator.of(context)
@@ -294,15 +495,302 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                   ),
                   Row(
                     children: [
-                      Text('Qty: ${batches[index].quantity}'),
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            const TextSpan(
+                                text: 'Qty: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '${batches[index].quantity}',
+                            ),
+                          ],
+                        ),
+                      ),
                       const SizedBox(
                         width: V_SMALL_PAD,
                       ),
-                      Text('Date: ${batches[index].date}'),
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            const TextSpan(
+                                text: 'Date: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '${batches[index].date}',
+                            ),
+                          ],
+                        ),
+                      ),
                       const SizedBox(
                         width: V_SMALL_PAD,
                       ),
                     ],
+                  ),
+                  const SizedBox(
+                    height: V_SMALL_PAD,
+                  ),
+                  Row(
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            const TextSpan(
+                                text: 'MRP: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '${batches[index].mRP}',
+                            ),
+                          ],
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            const TextSpan(
+                                text: 'CGST: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '${batches[index].cGST}',
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        width: V_SMALL_PAD,
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            const TextSpan(
+                                text: 'IGST: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '${batches[index].iGST}',
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        width: V_SMALL_PAD,
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            const TextSpan(
+                                text: 'SGST: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '${batches[index].sGST}',
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        width: V_SMALL_PAD,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: V_SMALL_PAD,
+                  ),
+                  Row(
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            const TextSpan(
+                                text: 'Expiry: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '${batches[index].expiry}',
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        width: V_SMALL_PAD,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: V_SMALL_PAD,
+                  ),
+                  Row(
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            const TextSpan(
+                                text: 'Cost Price: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '${batches[index].costPrice}',
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        width: V_SMALL_PAD,
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            const TextSpan(
+                                text: 'Sell Price: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '${batches[index].sellingPrice}',
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        width: V_SMALL_PAD,
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            const TextSpan(
+                                text: 'MRP: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '${batches[index].mRP}',
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        width: V_SMALL_PAD,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: V_SMALL_PAD,
+                  ),
+                  Row(
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            const TextSpan(
+                                text: 'Location: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '${batches[index].location}',
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        width: V_SMALL_PAD,
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            const TextSpan(
+                                text: 'Cess: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '${batches[index].cess}',
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        width: V_SMALL_PAD,
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            const TextSpan(
+                                text: 'Barcode: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '${batches[index].barcode}',
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: V_SMALL_PAD,
+                  ),
+                  Row(
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            const TextSpan(
+                                text: 'HSN: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '${batches[index].hSNCode}',
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: V_SMALL_PAD,
                   ),
                 ],
               ));

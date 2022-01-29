@@ -81,8 +81,8 @@ const String CREATE_ITEM_URL = '/api/user/addItem';
 const String UPDATE_ITEM_URL = '/api/user/updateItemDetails';
 const String CREATE_BATCH_URL = '/api/user/addBatch';
 const String UPDATE_BATCH_URL = '/api/user/updateBatchDetails';
-const String DELETE_BATCH_URL = '/api/user/deleteItem';
-const String DELETE_ITEM_URL = '/api/user/deleteBatch';
+const String DELETE_BATCH_URL = '/api/user/deleteBatch';
+const String DELETE_ITEM_URL = '/api/user/deleteItem';
 //Errors
 const String NO_CONNECTION_ERROR = 'Host Not Found';
 const String BAD_REQUEST_ERROR = 'Bad Request';
@@ -111,6 +111,29 @@ const int MINIMUM_PASSWORD_LENGTH = 6;
 const EdgeInsets FORM_PADDING = EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0);
 const EdgeInsets FORM_REGISTER_PADDING =
     EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0);
+
+List<String> categories = [
+  "",
+  "Snacks",
+  "Home Care",
+  "Personal Care",
+  "Health Care",
+  "Bakery",
+  "Breakfast",
+  "Chocolates",
+  "Stationery",
+  "Dairy",
+  "Cereals & Pulses",
+  "WB Government",
+  "Vegetables",
+  "Frozen Items",
+  "Sauce",
+  "Cooking",
+  "Baby Care",
+  "Drinks & Beverages"
+];
+
+List<String> units = ['', 'KGs', 'pieces'];
 
 AlertDialog EXIT_ALERT = AlertDialog(
   content: Text('Are you sure you want to exit?'),

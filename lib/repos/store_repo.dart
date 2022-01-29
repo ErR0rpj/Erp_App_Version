@@ -12,7 +12,8 @@ abstract class StoreService {
   Future<void> updateBatch(Batch batchData);
   Future<void> createBatch(Batch batchData);
   Future<void> deleteItem(String itemCode);
-  Future<void> deleteBatch(String batchCode);
+  Future<void> deleteBatch(
+      String barcode, String itemCode, String purchaseDate);
 }
 
 class StoreRepository extends StoreService {
@@ -66,11 +67,7 @@ class StoreRepository extends StoreService {
 
   @override
   Future<void> deleteItem(String itemCode) async {
-    final List<dynamic> response = await _provider.post(DELETE_ITEM_URL, {});
-    List<Batch> items = [];
-    for (var v in response) {
-      items.add(Batch.fromJson(v));
-    }
+    await _provider.post(DELETE_ITEM_URL, {"ItemCode": itemCode});
   }
 
   @override
@@ -84,11 +81,12 @@ class StoreRepository extends StoreService {
   }
 
   @override
-  Future<void> deleteBatch(String batchCode) async {
-    final List<dynamic> response = await _provider.post(DELETE_BATCH_URL, {});
-    List<Batch> items = [];
-    for (var v in response) {
-      items.add(Batch.fromJson(v));
-    }
+  Future<void> deleteBatch(
+      String barcode, String itemCode, String purchaseDate) async {
+    await _provider.post(DELETE_BATCH_URL, {
+      "Barcode": barcode,
+      "ItemCode": itemCode,
+      "PurchaseDate": purchaseDate
+    });
   }
 }

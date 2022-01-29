@@ -25,7 +25,7 @@ class _AddEditBatchState extends State<AddEditBatch> {
   final TextEditingController _cessController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
   DateTime _date = DateTime.now();
-  DateTime _expiry = DateTime.now();
+  DateTime _expiry = DateTime.now().add(const Duration(days: 365 * 2));
 
   @override
   void didChangeDependencies() {
@@ -45,7 +45,7 @@ class _AddEditBatchState extends State<AddEditBatch> {
       _quantityController.text =
           _batchData.quantity != null ? _batchData.quantity.toString() : '';
       _costPriceController.text =
-          _batchData.costPrice != null ? _batchData.costPrice.toString() : '';
+          _batchData.costPrice != null ? _batchData.costPrice.toString() : '0';
       _sellPriceController.text = _batchData.sellingPrice != null
           ? _batchData.sellingPrice.toString()
           : '';
@@ -119,55 +119,55 @@ class _AddEditBatchState extends State<AddEditBatch> {
                 height: AppConstants().height * 0.03,
                 width: AppConstants().width,
               ),
-              TextInput(
+              TextFieldInput(
                   fieldName: 'Quantity',
                   validator: nameValidator,
                   keyboardType: TextInputType.number,
                   inputController: _quantityController),
               const SizedBox(height: MEDIUM_PAD),
-              TextInput(
+              TextFieldInput(
                   fieldName: 'Cost Price',
                   validator: nameValidator,
                   keyboardType: TextInputType.number,
                   inputController: _costPriceController),
               const SizedBox(height: MEDIUM_PAD),
-              TextInput(
+              TextFieldInput(
                   fieldName: 'Selling Price',
                   validator: nameValidator,
                   keyboardType: TextInputType.number,
                   inputController: _sellPriceController),
               const SizedBox(height: MEDIUM_PAD),
-              TextInput(
+              TextFieldInput(
                   fieldName: 'MRP',
                   validator: nameValidator,
                   keyboardType: TextInputType.number,
                   inputController: _mrpController),
               const SizedBox(height: MEDIUM_PAD),
-              TextInput(
+              TextFieldInput(
                   fieldName: 'CGST',
                   validator: nameValidator,
                   keyboardType: TextInputType.number,
                   inputController: _cgstController),
               const SizedBox(height: MEDIUM_PAD),
-              TextInput(
+              TextFieldInput(
                   fieldName: 'SGST',
                   validator: nameValidator,
                   keyboardType: TextInputType.number,
                   inputController: _sgstController),
               const SizedBox(height: MEDIUM_PAD),
-              TextInput(
+              TextFieldInput(
                   fieldName: 'IGST',
                   validator: nameValidator,
                   keyboardType: TextInputType.number,
                   inputController: _igstController),
               const SizedBox(height: MEDIUM_PAD),
-              TextInput(
+              TextFieldInput(
                   fieldName: 'Cess',
                   validator: nameValidator,
                   keyboardType: TextInputType.number,
                   inputController: _cessController),
               const SizedBox(height: MEDIUM_PAD),
-              TextInput(
+              TextFieldInput(
                   fieldName: 'Location',
                   validator: nameValidator,
                   keyboardType: TextInputType.text,
