@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:inventory_app/blocs/blocs.dart';
 import 'package:inventory_app/utils/consts.dart';
 import 'package:inventory_app/presentation/elements/BigWideButton.dart';
@@ -228,7 +229,8 @@ class _AddEditBatchState extends State<AddEditBatch> {
               //     : Container(),
               const SizedBox(height: MEDIUM_PAD),
               MaterialButton(
-                child: const Text('Choose Purchase Date'),
+                child: Text(
+                    'Choose Purchase Date | ${DateFormat.yMMMd().format(_date)}'),
                 onPressed: () {
                   showDatePicker(
                     context: context,
@@ -245,7 +247,8 @@ class _AddEditBatchState extends State<AddEditBatch> {
               ),
               const SizedBox(height: MEDIUM_PAD),
               MaterialButton(
-                child: const Text('Choose Expiry'),
+                child: Text(
+                    'Choose Expiry |${DateFormat.yMMMd().format(_expiry)}'),
                 onPressed: () {
                   showDatePicker(
                     context: context,
@@ -263,7 +266,8 @@ class _AddEditBatchState extends State<AddEditBatch> {
               Container(child: Text('OR')),
               const SizedBox(height: MEDIUM_PAD),
               MaterialButton(
-                child: const Text('Choose Pkg/Mfg Date:'),
+                child: Text(
+                    'Choose Pkg/Mfg Date: | ${DateFormat.yMMMd().format(_pkgOrMfg)}'),
                 onPressed: () {
                   showDatePicker(
                     context: context,

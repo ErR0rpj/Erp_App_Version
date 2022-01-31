@@ -1,4 +1,4 @@
-#Mon Jan 31 13:38:41 IST 2022
+#Mon Jan 31 13:51:41 IST 2022
 base.1=/Users/prashantchoudhary/code/moodi/inventory_app/build/app/intermediates/dex/debug/mergeDexDebug/classes2.dex
 path.1=classes2.dex
 base.0=/Users/prashantchoudhary/code/moodi/inventory_app/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex

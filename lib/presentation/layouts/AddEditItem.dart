@@ -8,6 +8,7 @@ import 'package:inventory_app/repos/repos.dart';
 import 'package:inventory_app/models/models.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 class AddEditItem extends StatefulWidget {
   @override
@@ -147,6 +148,7 @@ class _AddEditItemState extends State<AddEditItem> {
         barcode: _barcodeController.text,
         date: _date.toString(),
         expiry: _expiry.toString(),
+        hSNCode: _hsnController.text,
         location: _location,
         sellingPrice: double.parse(_sellPriceController.text),
         cess: double.parse(_cessController.text));
@@ -365,7 +367,9 @@ class _AddEditItemState extends State<AddEditItem> {
               !_isEdit ? const SizedBox(height: MEDIUM_PAD) : Container(),
               !_isEdit
                   ? MaterialButton(
-                      child: Text('Choose Purchase Date'),
+                      elevation: 5,
+                      child: Text(
+                          'Choose Purchase Date | ${DateFormat.yMMMd().format(_date)}'),
                       onPressed: () {
                         showDatePicker(
                           context: context,
@@ -385,7 +389,8 @@ class _AddEditItemState extends State<AddEditItem> {
               !_isEdit ? const SizedBox(height: MEDIUM_PAD) : Container(),
               !_isEdit
                   ? MaterialButton(
-                      child: const Text('Choose Expiry Date'),
+                      child: Text(
+                          'Choose Expiry Date | ${DateFormat.yMMMd().format(_expiry)}'),
                       onPressed: () {
                         showDatePicker(
                           context: context,
