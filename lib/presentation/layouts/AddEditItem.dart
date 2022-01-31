@@ -38,7 +38,8 @@ class _AddEditItemState extends State<AddEditItem> {
   final TextEditingController _cessController = TextEditingController();
   String _location = 'Shelf';
   DateTime _date = DateTime.now();
-  DateTime _expiry = DateTime.now().add(const Duration(days: 365 * 2));
+  DateTime? _expiry = null;
+  DateTime? _pkgOrMfg = null;
 
   @override
   void didChangeDependencies() {
@@ -147,7 +148,8 @@ class _AddEditItemState extends State<AddEditItem> {
         iGST: double.parse(_igstController.text),
         barcode: _barcodeController.text,
         date: _date.toString(),
-        expiry: _expiry.toString(),
+        expiry: _expiry?.toString(),
+        pkgOrMfg: _pkgOrMfg?.toString(),
         hSNCode: _hsnController.text,
         location: _location,
         sellingPrice: double.parse(_sellPriceController.text),
@@ -257,7 +259,7 @@ class _AddEditItemState extends State<AddEditItem> {
               TextFieldInput(
                   fieldName: 'HSN',
                   validator: nameValidator,
-                  keyboardType: TextInputType.text,
+                  keyboardType: TextInputType.number,
                   inputController: _hsnController),
               const SizedBox(height: MEDIUM_PAD),
               TextFieldInput(
@@ -269,7 +271,7 @@ class _AddEditItemState extends State<AddEditItem> {
               TextFieldInput(
                   fieldName: 'Barcode',
                   validator: nameValidator,
-                  keyboardType: TextInputType.text,
+                  keyboardType: TextInputType.number,
                   inputController: _barcodeController),
               IconButton(
                   onPressed: () => scanBarcodeNormal(),
@@ -279,7 +281,7 @@ class _AddEditItemState extends State<AddEditItem> {
                   ? TextFieldInput(
                       fieldName: 'Quantity',
                       validator: nameValidator,
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                       inputController: _quantityController)
                   : Container(),
               !_isEdit ? const SizedBox(height: MEDIUM_PAD) : Container(),
@@ -287,7 +289,7 @@ class _AddEditItemState extends State<AddEditItem> {
                   ? TextFieldInput(
                       fieldName: 'Cost Price',
                       validator: nameValidator,
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                       inputController: _costPriceController)
                   : Container(),
               !_isEdit ? const SizedBox(height: MEDIUM_PAD) : Container(),
@@ -295,7 +297,7 @@ class _AddEditItemState extends State<AddEditItem> {
                   ? TextFieldInput(
                       fieldName: 'Selling Price',
                       validator: nameValidator,
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                       inputController: _sellPriceController)
                   : Container(),
               !_isEdit ? const SizedBox(height: MEDIUM_PAD) : Container(),
@@ -303,7 +305,7 @@ class _AddEditItemState extends State<AddEditItem> {
                   ? TextFieldInput(
                       fieldName: 'MRP',
                       validator: nameValidator,
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                       inputController: _mrpController)
                   : Container(),
               !_isEdit ? const SizedBox(height: MEDIUM_PAD) : Container(),
@@ -311,7 +313,7 @@ class _AddEditItemState extends State<AddEditItem> {
                   ? TextFieldInput(
                       fieldName: 'CGST',
                       validator: nameValidator,
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                       inputController: _cgstController)
                   : Container(),
               !_isEdit ? const SizedBox(height: MEDIUM_PAD) : Container(),
@@ -319,7 +321,7 @@ class _AddEditItemState extends State<AddEditItem> {
                   ? TextFieldInput(
                       fieldName: 'SGST',
                       validator: nameValidator,
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                       inputController: _sgstController)
                   : Container(),
               !_isEdit ? const SizedBox(height: MEDIUM_PAD) : Container(),
@@ -327,7 +329,7 @@ class _AddEditItemState extends State<AddEditItem> {
                   ? TextFieldInput(
                       fieldName: 'IGST',
                       validator: nameValidator,
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                       inputController: _igstController)
                   : Container(),
               !_isEdit ? const SizedBox(height: MEDIUM_PAD) : Container(),
@@ -335,7 +337,7 @@ class _AddEditItemState extends State<AddEditItem> {
                   ? TextFieldInput(
                       fieldName: 'Cess',
                       validator: nameValidator,
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                       inputController: _cessController)
                   : Container(),
               !_isEdit ? const SizedBox(height: MEDIUM_PAD) : Container(),
@@ -390,7 +392,7 @@ class _AddEditItemState extends State<AddEditItem> {
               !_isEdit
                   ? MaterialButton(
                       child: Text(
-                          'Choose Expiry Date | ${DateFormat.yMMMd().format(_expiry)}'),
+                          'Choose Expiry Date |${_expiry != null ? DateFormat.yMMMd().format(_expiry!) : ''} '),
                       onPressed: () {
                         showDatePicker(
                           context: context,
@@ -402,6 +404,27 @@ class _AddEditItemState extends State<AddEditItem> {
                         ).then((date) {
                           setState(() {
                             _expiry = date!;
+                          });
+                        });
+                      },
+                    )
+                  : Container(),
+              const SizedBox(height: MEDIUM_PAD),
+              !_isEdit
+                  ? MaterialButton(
+                      child: Text(
+                          'Choose Pkg/Mfg Date: | ${_pkgOrMfg != null ? DateFormat.yMMMd().format(_pkgOrMfg!) : ''}'),
+                      onPressed: () {
+                        showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate:
+                              DateTime.now().subtract(const Duration(days: 30)),
+                          lastDate:
+                              DateTime.now().add(const Duration(days: 2000)),
+                        ).then((date) {
+                          setState(() {
+                            _pkgOrMfg = date!;
                           });
                         });
                       },

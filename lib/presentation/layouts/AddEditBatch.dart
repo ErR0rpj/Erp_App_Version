@@ -25,8 +25,8 @@ class _AddEditBatchState extends State<AddEditBatch> {
   final TextEditingController _igstController = TextEditingController();
   final TextEditingController _cessController = TextEditingController();
   DateTime _date = DateTime.now();
-  DateTime _expiry = DateTime.now().add(const Duration(days: 365 * 2));
-  DateTime _pkgOrMfg = DateTime.now().add(const Duration(days: 365 * 2));
+  DateTime? _expiry = null;
+  DateTime? _pkgOrMfg = null;
   String _location = 'Shelf';
   @override
   void didChangeDependencies() {
@@ -83,8 +83,8 @@ class _AddEditBatchState extends State<AddEditBatch> {
         itemCode: _batchData.itemCode,
         date: _date.toString(),
         userId: _batchData.userId,
-        expiry: _expiry.toString(),
-        pkgOrMfg: _pkgOrMfg.toString(),
+        expiry: _expiry?.toString(),
+        pkgOrMfg: _pkgOrMfg?.toString(),
         location: _location,
         barcode: _batchData.barcode,
         sellingPrice: double.parse(_sellPriceController.text),
@@ -248,7 +248,7 @@ class _AddEditBatchState extends State<AddEditBatch> {
               const SizedBox(height: MEDIUM_PAD),
               MaterialButton(
                 child: Text(
-                    'Choose Expiry |${DateFormat.yMMMd().format(_expiry)}'),
+                    'Choose Expiry |${_expiry != null ? DateFormat.yMMMd().format(_expiry!) : ''}'),
                 onPressed: () {
                   showDatePicker(
                     context: context,
@@ -267,7 +267,7 @@ class _AddEditBatchState extends State<AddEditBatch> {
               const SizedBox(height: MEDIUM_PAD),
               MaterialButton(
                 child: Text(
-                    'Choose Pkg/Mfg Date: | ${DateFormat.yMMMd().format(_pkgOrMfg)}'),
+                    'Choose Pkg/Mfg Date: | ${_pkgOrMfg != null ? DateFormat.yMMMd().format(_pkgOrMfg!) : ''}'),
                 onPressed: () {
                   showDatePicker(
                     context: context,
