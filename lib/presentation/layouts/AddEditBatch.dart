@@ -67,8 +67,12 @@ class _AddEditBatchState extends State<AddEditBatch> {
           _batchData.cess != null ? _batchData.cess.toString() : '';
       _location = _batchData.location ?? '';
       _date = DateTime.parse(_batchData.date ?? '');
-      _expiry = DateTime.parse(_batchData.expiry ?? '');
-      _pkgOrMfg = DateTime.parse(_batchData.pkgOrMfg ?? '');
+      _expiry = _batchData.expiry != null
+          ? DateTime.parse(_batchData.expiry ?? '')
+          : null;
+      _pkgOrMfg = _batchData.pkgOrMfg != null
+          ? DateTime.parse(_batchData.pkgOrMfg ?? '')
+          : null;
     });
   }
 
@@ -83,8 +87,8 @@ class _AddEditBatchState extends State<AddEditBatch> {
         itemCode: _batchData.itemCode,
         date: _date.toString(),
         userId: _batchData.userId,
-        expiry: _expiry?.toString(),
-        pkgOrMfg: _pkgOrMfg?.toString(),
+        expiry: _expiry != null ? _expiry.toString() : null,
+        pkgOrMfg: _pkgOrMfg != null ? _pkgOrMfg.toString() : null,
         location: _location,
         barcode: _batchData.barcode,
         sellingPrice: double.parse(_sellPriceController.text),
@@ -104,8 +108,8 @@ class _AddEditBatchState extends State<AddEditBatch> {
         date: _date.toString(),
         itemCode: _batchData.itemCode,
         userId: _batchData.userId,
-        expiry: _expiry.toString(),
-        pkgOrMfg: _pkgOrMfg.toString(),
+        expiry: _expiry != null ? _expiry.toString() : null,
+        pkgOrMfg: _pkgOrMfg != null ? _pkgOrMfg.toString() : null,
         barcode: _batchData.barcode,
         location: _location,
         sellingPrice: double.parse(_sellPriceController.text),
