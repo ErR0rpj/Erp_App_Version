@@ -48,13 +48,13 @@ class _AddEditItemState extends State<AddEditItem> {
     updateDataIfAvailable();
     _categoryController.addListener(_addCategory);
     _unitController.addListener(_addUnit);
-    _cgstController.text="0";
-    _sgstController.text="0";
-    _igstController.text="0";
-    _cessController.text="0";
-    _costPriceController.text="0";
-    _unitController.text="Pieces";
-    _hsnController.text="0";
+    _cgstController.text = "0";
+    _sgstController.text = "0";
+    _igstController.text = "0";
+    _cessController.text = "0";
+    _costPriceController.text = "0";
+    _unitController.text = "Pieces";
+    _hsnController.text = "0";
   }
 
   Future<void> scanBarcodeNormal() async {
@@ -120,7 +120,7 @@ class _AddEditItemState extends State<AddEditItem> {
       _nameController.text = _itemData.name ?? '';
       _wtvolController.text = _itemData.weightVolume ?? '';
       _unitController.text = _itemData.unit ?? '';
-      _hsnController.text = _itemData.hSNCode ?? '';
+      _hsnController.text = _itemData.hSNCode ?? '0';
       _barcodeController.text = _itemData.barcode ?? '';
       _shelfLife.text =
           _itemData.shelfLife != null ? _itemData.shelfLife.toString() : '';
@@ -337,7 +337,7 @@ class _AddEditItemState extends State<AddEditItem> {
                       inputController: _cessController)
                   : Container(),
               !_isEdit ? const SizedBox(height: MEDIUM_PAD) : Container(),
-              Container(child:Text('Location')),
+              !_isEdit ? Container(child: Text('Location')) : Container(),
               !_isEdit
                   ? DropdownButton<String>(
                       value: _location,

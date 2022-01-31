@@ -23,10 +23,10 @@ class _AddEditBatchState extends State<AddEditBatch> {
   final TextEditingController _sgstController = TextEditingController();
   final TextEditingController _igstController = TextEditingController();
   final TextEditingController _cessController = TextEditingController();
-  final TextEditingController _locationController = TextEditingController();
   DateTime _date = DateTime.now();
   DateTime _expiry = DateTime.now().add(const Duration(days: 365 * 2));
   DateTime _pkgOrMfg = DateTime.now().add(const Duration(days: 365 * 2));
+  String _location = 'Shelf';
   @override
   void didChangeDependencies() {
     setState(() {
@@ -34,11 +34,11 @@ class _AddEditBatchState extends State<AddEditBatch> {
     });
     super.didChangeDependencies();
     updateDataIfAvailable();
-    _cgstController.text="0";
-    _sgstController.text="0";
-    _igstController.text="0";
-    _cessController.text="0";
-    _costPriceController.text="0";
+    _cgstController.text = "0";
+    _sgstController.text = "0";
+    _igstController.text = "0";
+    _cessController.text = "0";
+    _costPriceController.text = "0";
   }
 
   Future<void> updateDataIfAvailable() async {
@@ -64,7 +64,7 @@ class _AddEditBatchState extends State<AddEditBatch> {
           _batchData.iGST != null ? _batchData.iGST.toString() : '';
       _cessController.text =
           _batchData.cess != null ? _batchData.cess.toString() : '';
-      _locationController.text = _batchData.location ?? '';
+      _location = _batchData.location ?? '';
       _date = DateTime.parse(_batchData.date ?? '');
       _expiry = DateTime.parse(_batchData.expiry ?? '');
       _pkgOrMfg = DateTime.parse(_batchData.pkgOrMfg ?? '');
@@ -84,7 +84,7 @@ class _AddEditBatchState extends State<AddEditBatch> {
         userId: _batchData.userId,
         expiry: _expiry.toString(),
         pkgOrMfg: _pkgOrMfg.toString(),
-        location: _locationController.text,
+        location: _location,
         barcode: _batchData.barcode,
         sellingPrice: double.parse(_sellPriceController.text),
         cess: double.parse(_cessController.text));
@@ -106,7 +106,7 @@ class _AddEditBatchState extends State<AddEditBatch> {
         expiry: _expiry.toString(),
         pkgOrMfg: _pkgOrMfg.toString(),
         barcode: _batchData.barcode,
-        location: _locationController.text,
+        location: _location,
         sellingPrice: double.parse(_sellPriceController.text),
         cess: double.parse(_cessController.text));
     await StoreRepository().updateBatch(newBatch);
@@ -175,11 +175,33 @@ class _AddEditBatchState extends State<AddEditBatch> {
                   keyboardType: TextInputType.number,
                   inputController: _cessController),
               const SizedBox(height: MEDIUM_PAD),
-              TextFieldInput(
-                  fieldName: 'Location',
-                  validator: nameValidator,
-                  keyboardType: TextInputType.text,
-                  inputController: _locationController),
+              // TextFieldInput(
+              //     fieldName: 'Location',
+              //     validator: nameValidator,
+              //     keyboardType: TextInputType.text,
+              //     inputController: _locationController),
+              Container(child: Text('Location')),
+              DropdownButton<String>(
+                value: _location,
+                elevation: 16,
+                style: const TextStyle(color: Colors.deepPurple),
+                underline: Container(
+                  height: 2,
+                  color: Colors.deepPurpleAccent,
+                ),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _location = newValue!;
+                  });
+                },
+                items: ['Shelf', 'Carton']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
               // Container(child:Text('Location')),
               // !_isEdit
               //     ? DropdownButton<String>(
@@ -238,7 +260,7 @@ class _AddEditBatchState extends State<AddEditBatch> {
                   });
                 },
               ),
-              Container(child:Text('OR')),
+              Container(child: Text('OR')),
               const SizedBox(height: MEDIUM_PAD),
               MaterialButton(
                 child: const Text('Choose Pkg/Mfg Date:'),
@@ -247,7 +269,7 @@ class _AddEditBatchState extends State<AddEditBatch> {
                     context: context,
                     initialDate: DateTime.now(),
                     firstDate:
-                    DateTime.now().subtract(const Duration(days: 30)),
+                        DateTime.now().subtract(const Duration(days: 30)),
                     lastDate: DateTime.now().add(const Duration(days: 2000)),
                   ).then((date) {
                     setState(() {

@@ -1,26 +1,26 @@
 [
     {
-        "merged": "C:\\Users\\Swarnali Sinha\\Erp_App_Version\\build\\flutter_plugin_android_lifecycle\\intermediates\\res\\merged\\debug\\layout\\custom_dialog.xml",
-        "source": "C:\\Users\\Swarnali Sinha\\.gradle\\caches\\transforms-2\\files-2.1\\5f663b08eec19eef9a9d1af662d9025e\\core-1.6.0\\res\\layout\\custom_dialog.xml"
+        "merged": "/Users/prashantchoudhary/code/moodi/inventory_app/build/flutter_plugin_android_lifecycle/intermediates/res/merged/debug/layout/notification_action.xml",
+        "source": "/Users/prashantchoudhary/.gradle/caches/transforms-2/files-2.1/5f663b08eec19eef9a9d1af662d9025e/core-1.6.0/res/layout/notification_action.xml"
     },
     {
-        "merged": "C:\\Users\\Swarnali Sinha\\Erp_App_Version\\build\\flutter_plugin_android_lifecycle\\intermediates\\res\\merged\\debug\\layout\\notification_template_icon_group.xml",
-        "source": "C:\\Users\\Swarnali Sinha\\.gradle\\caches\\transforms-2\\files-2.1\\5f663b08eec19eef9a9d1af662d9025e\\core-1.6.0\\res\\layout\\notification_template_icon_group.xml"
+        "merged": "/Users/prashantchoudhary/code/moodi/inventory_app/build/flutter_plugin_android_lifecycle/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/Users/prashantchoudhary/.gradle/caches/transforms-2/files-2.1/5f663b08eec19eef9a9d1af662d9025e/core-1.6.0/res/layout/notification_template_part_time.xml"
     },
     {
-        "merged": "C:\\Users\\Swarnali Sinha\\Erp_App_Version\\build\\flutter_plugin_android_lifecycle\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
-        "source": "C:\\Users\\Swarnali Sinha\\.gradle\\caches\\transforms-2\\files-2.1\\5f663b08eec19eef9a9d1af662d9025e\\core-1.6.0\\res\\layout\\notification_template_part_chronometer.xml"
+        "merged": "/Users/prashantchoudhary/code/moodi/inventory_app/build/flutter_plugin_android_lifecycle/intermediates/res/merged/debug/layout/notification_action_tombstone.xml",
+        "source": "/Users/prashantchoudhary/.gradle/caches/transforms-2/files-2.1/5f663b08eec19eef9a9d1af662d9025e/core-1.6.0/res/layout/notification_action_tombstone.xml"
     },
     {
-        "merged": "C:\\Users\\Swarnali Sinha\\Erp_App_Version\\build\\flutter_plugin_android_lifecycle\\intermediates\\res\\merged\\debug\\layout\\notification_action.xml",
-        "source": "C:\\Users\\Swarnali Sinha\\.gradle\\caches\\transforms-2\\files-2.1\\5f663b08eec19eef9a9d1af662d9025e\\core-1.6.0\\res\\layout\\notification_action.xml"
+        "merged": "/Users/prashantchoudhary/code/moodi/inventory_app/build/flutter_plugin_android_lifecycle/intermediates/res/merged/debug/layout/custom_dialog.xml",
+        "source": "/Users/prashantchoudhary/.gradle/caches/transforms-2/files-2.1/5f663b08eec19eef9a9d1af662d9025e/core-1.6.0/res/layout/custom_dialog.xml"
     },
     {
-        "merged": "C:\\Users\\Swarnali Sinha\\Erp_App_Version\\build\\flutter_plugin_android_lifecycle\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
-        "source": "C:\\Users\\Swarnali Sinha\\.gradle\\caches\\transforms-2\\files-2.1\\5f663b08eec19eef9a9d1af662d9025e\\core-1.6.0\\res\\layout\\notification_template_part_time.xml"
+        "merged": "/Users/prashantchoudhary/code/moodi/inventory_app/build/flutter_plugin_android_lifecycle/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
+        "source": "/Users/prashantchoudhary/.gradle/caches/transforms-2/files-2.1/5f663b08eec19eef9a9d1af662d9025e/core-1.6.0/res/layout/notification_template_part_chronometer.xml"
     },
     {
-        "merged": "C:\\Users\\Swarnali Sinha\\Erp_App_Version\\build\\flutter_plugin_android_lifecycle\\intermediates\\res\\merged\\debug\\layout\\notification_action_tombstone.xml",
-        "source": "C:\\Users\\Swarnali Sinha\\.gradle\\caches\\transforms-2\\files-2.1\\5f663b08eec19eef9a9d1af662d9025e\\core-1.6.0\\res\\layout\\notification_action_tombstone.xml"
+        "merged": "/Users/prashantchoudhary/code/moodi/inventory_app/build/flutter_plugin_android_lifecycle/intermediates/res/merged/debug/layout/notification_template_icon_group.xml",
+        "source": "/Users/prashantchoudhary/.gradle/caches/transforms-2/files-2.1/5f663b08eec19eef9a9d1af662d9025e/core-1.6.0/res/layout/notification_template_icon_group.xml"
     }
 ]
