@@ -195,7 +195,7 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
           }
           return Container(
             width: double.infinity,
-            height: 25.0 * 5,
+            height: 25.0 * 6,
             alignment: Alignment.center,
             child: Stack(children: [
               Container(
@@ -365,6 +365,27 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                         )
                       ],
                     ),
+                    const SizedBox(
+                      height: V_SMALL_PAD,
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
+                        children: <TextSpan>[
+                          const TextSpan(
+                              text: 'Shelf Life: ',
+                              style:
+                              TextStyle(fontWeight: FontWeight.bold)),
+                          TextSpan(
+                            text: '${widget.itemData.shelfLife}',
+                          ),
+                        ],
+                      ),
+                    )
+
                   ],
                 ),
               ),
@@ -524,10 +545,10 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                           ),
                           children: <TextSpan>[
                             const TextSpan(
-                                text: 'Date: ',
+                                text: 'Purchase: ',
                                 style: TextStyle(fontWeight: FontWeight.bold)),
                             TextSpan(
-                              text: '${batches[index].date}',
+                              text: '${(batches[index].date)?.substring(0,10)}',
                             ),
                           ],
                         ),
@@ -542,22 +563,22 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                   ),
                   Row(
                     children: [
-                      RichText(
-                        text: TextSpan(
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
-                          ),
-                          children: <TextSpan>[
-                            const TextSpan(
-                                text: 'MRP: ',
-                                style: TextStyle(fontWeight: FontWeight.bold)),
-                            TextSpan(
-                              text: '${batches[index].mRP}',
-                            ),
-                          ],
-                        ),
-                      ),
+                      // RichText(
+                      //   text: TextSpan(
+                      //     style: const TextStyle(
+                      //       fontSize: 16,
+                      //       color: Colors.black,
+                      //     ),
+                      //     children: <TextSpan>[
+                      //       const TextSpan(
+                      //           text: 'MRP: ',
+                      //           style: TextStyle(fontWeight: FontWeight.bold)),
+                      //       TextSpan(
+                      //         text: '${batches[index].mRP}',
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                       RichText(
                         text: TextSpan(
                           style: const TextStyle(
@@ -633,7 +654,7 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                                 text: 'Expiry: ',
                                 style: TextStyle(fontWeight: FontWeight.bold)),
                             TextSpan(
-                              text: '${batches[index].expiry}',
+                              text: '${(batches[index].expiry)?.substring(0,10)}',
                             ),
                           ],
                         ),
@@ -785,6 +806,22 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                                 style: TextStyle(fontWeight: FontWeight.bold)),
                             TextSpan(
                               text: '${batches[index].hSNCode}',
+                            ),
+                          ],
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            const TextSpan(
+                                text: 'Pkg/Mfg: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '${batches[index].pkgOrMfg}',
                             ),
                           ],
                         ),

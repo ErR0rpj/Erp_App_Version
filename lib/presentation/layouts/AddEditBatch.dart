@@ -26,7 +26,7 @@ class _AddEditBatchState extends State<AddEditBatch> {
   final TextEditingController _locationController = TextEditingController();
   DateTime _date = DateTime.now();
   DateTime _expiry = DateTime.now().add(const Duration(days: 365 * 2));
-
+  DateTime _pkgOrMfg = DateTime.now().add(const Duration(days: 365 * 2));
   @override
   void didChangeDependencies() {
     setState(() {
@@ -34,6 +34,11 @@ class _AddEditBatchState extends State<AddEditBatch> {
     });
     super.didChangeDependencies();
     updateDataIfAvailable();
+    _cgstController.text="0";
+    _sgstController.text="0";
+    _igstController.text="0";
+    _cessController.text="0";
+    _costPriceController.text="0";
   }
 
   Future<void> updateDataIfAvailable() async {
@@ -62,6 +67,7 @@ class _AddEditBatchState extends State<AddEditBatch> {
       _locationController.text = _batchData.location ?? '';
       _date = DateTime.parse(_batchData.date ?? '');
       _expiry = DateTime.parse(_batchData.expiry ?? '');
+      _pkgOrMfg = DateTime.parse(_batchData.pkgOrMfg ?? '');
     });
   }
 
@@ -77,6 +83,7 @@ class _AddEditBatchState extends State<AddEditBatch> {
         date: _date.toString(),
         userId: _batchData.userId,
         expiry: _expiry.toString(),
+        pkgOrMfg: _pkgOrMfg.toString(),
         location: _locationController.text,
         barcode: _batchData.barcode,
         sellingPrice: double.parse(_sellPriceController.text),
@@ -97,6 +104,7 @@ class _AddEditBatchState extends State<AddEditBatch> {
         itemCode: _batchData.itemCode,
         userId: _batchData.userId,
         expiry: _expiry.toString(),
+        pkgOrMfg: _pkgOrMfg.toString(),
         barcode: _batchData.barcode,
         location: _locationController.text,
         sellingPrice: double.parse(_sellPriceController.text),
@@ -172,9 +180,33 @@ class _AddEditBatchState extends State<AddEditBatch> {
                   validator: nameValidator,
                   keyboardType: TextInputType.text,
                   inputController: _locationController),
+              // Container(child:Text('Location')),
+              // !_isEdit
+              //     ? DropdownButton<String>(
+              //   value: _location,
+              //   elevation: 16,
+              //   style: const TextStyle(color: Colors.deepPurple),
+              //   underline: Container(
+              //     height: 2,
+              //     color: Colors.deepPurpleAccent,
+              //   ),
+              //   onChanged: (String? newValue) {
+              //     setState(() {
+              //       _location = newValue!;
+              //     });
+              //   },
+              //   items: ['Shelf', 'Carton']
+              //       .map<DropdownMenuItem<String>>((String value) {
+              //     return DropdownMenuItem<String>(
+              //       value: value,
+              //       child: Text(value),
+              //     );
+              //   }).toList(),
+              // )
+              //     : Container(),
               const SizedBox(height: MEDIUM_PAD),
               MaterialButton(
-                child: const Text('Choose Date'),
+                child: const Text('Choose Purchase Date'),
                 onPressed: () {
                   showDatePicker(
                     context: context,
@@ -202,6 +234,24 @@ class _AddEditBatchState extends State<AddEditBatch> {
                   ).then((date) {
                     setState(() {
                       _expiry = date!;
+                    });
+                  });
+                },
+              ),
+              Container(child:Text('OR')),
+              const SizedBox(height: MEDIUM_PAD),
+              MaterialButton(
+                child: const Text('Choose Pkg/Mfg Date:'),
+                onPressed: () {
+                  showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate:
+                    DateTime.now().subtract(const Duration(days: 30)),
+                    lastDate: DateTime.now().add(const Duration(days: 2000)),
+                  ).then((date) {
+                    setState(() {
+                      _pkgOrMfg = date!;
                     });
                   });
                 },

@@ -133,7 +133,7 @@ List<String> categories = [
   "Drinks & Beverages"
 ];
 
-List<String> units = ['', 'KGs', 'pieces'];
+List<String> units = ['', 'Kgs', 'Pieces'];
 
 AlertDialog EXIT_ALERT = AlertDialog(
   content: Text('Are you sure you want to exit?'),

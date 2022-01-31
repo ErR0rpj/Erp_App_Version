@@ -9,6 +9,7 @@ class Batch {
   String? date;
   String? itemCode;
   String? expiry;
+  String? pkgOrMfg;
   num? quantity;
   num? costPrice;
   num? sellingPrice;
@@ -30,6 +31,7 @@ class Batch {
       this.costPrice,
       this.sellingPrice,
       this.expiry,
+      this.pkgOrMfg,
       this.location,
       this.cess,
       this.mRP});
@@ -41,6 +43,7 @@ class Batch {
     hSNCode = json['HSN_Code'];
     sId = json['_id'];
     expiry = json['Expiry'];
+    pkgOrMfg = json['PkgOrMfg'];
     userId = json['UserId'];
     barcode = json['Barcode'];
     date = json['Date'];
@@ -69,6 +72,7 @@ class Batch {
     data['Selling_Price'] = this.sellingPrice;
     data['MRP'] = this.mRP;
     data['Expiry'] = this.expiry;
+    data['PkgOrMfg'] = this.pkgOrMfg;
     data['Location'] = this.location;
     data['Cess'] = this.cess;
     data['PurchaseDate'] = this.date;

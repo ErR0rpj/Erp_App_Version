@@ -48,6 +48,13 @@ class _AddEditItemState extends State<AddEditItem> {
     updateDataIfAvailable();
     _categoryController.addListener(_addCategory);
     _unitController.addListener(_addUnit);
+    _cgstController.text="0";
+    _sgstController.text="0";
+    _igstController.text="0";
+    _cessController.text="0";
+    _costPriceController.text="0";
+    _unitController.text="Pieces";
+    _hsnController.text="0";
   }
 
   Future<void> scanBarcodeNormal() async {
@@ -220,7 +227,7 @@ class _AddEditItemState extends State<AddEditItem> {
                   inputController: _wtvolController),
               const SizedBox(height: MEDIUM_PAD),
               TextFieldInput(
-                  fieldName: 'Unit Data',
+                  fieldName: 'Unit',
                   validator: nameValidator,
                   keyboardType: TextInputType.text,
                   inputController: _unitController),
@@ -330,6 +337,7 @@ class _AddEditItemState extends State<AddEditItem> {
                       inputController: _cessController)
                   : Container(),
               !_isEdit ? const SizedBox(height: MEDIUM_PAD) : Container(),
+              Container(child:Text('Location')),
               !_isEdit
                   ? DropdownButton<String>(
                       value: _location,
@@ -357,7 +365,7 @@ class _AddEditItemState extends State<AddEditItem> {
               !_isEdit ? const SizedBox(height: MEDIUM_PAD) : Container(),
               !_isEdit
                   ? MaterialButton(
-                      child: Text('Choose Date'),
+                      child: Text('Choose Purchase Date'),
                       onPressed: () {
                         showDatePicker(
                           context: context,
@@ -377,7 +385,7 @@ class _AddEditItemState extends State<AddEditItem> {
               !_isEdit ? const SizedBox(height: MEDIUM_PAD) : Container(),
               !_isEdit
                   ? MaterialButton(
-                      child: const Text('Choose Expiry'),
+                      child: const Text('Choose Expiry Date'),
                       onPressed: () {
                         showDatePicker(
                           context: context,
