@@ -35,15 +35,15 @@ class _AddEditBatchState extends State<AddEditBatch> {
     });
     super.didChangeDependencies();
     updateDataIfAvailable();
-    _cgstController.text = "0";
-    _sgstController.text = "0";
-    _igstController.text = "0";
-    _cessController.text = "0";
-    _costPriceController.text = "0";
   }
 
   Future<void> updateDataIfAvailable() async {
     if (_batchData == null || _batchData.mRP == null || _batchData.mRP == 0) {
+      _cgstController.text = "0";
+      _sgstController.text = "0";
+      _igstController.text = "0";
+      _cessController.text = "0";
+      _costPriceController.text = "0";
       return;
     }
     setState(() {
@@ -65,7 +65,10 @@ class _AddEditBatchState extends State<AddEditBatch> {
           _batchData.iGST != null ? _batchData.iGST.toString() : '';
       _cessController.text =
           _batchData.cess != null ? _batchData.cess.toString() : '';
-      _location = _batchData.location ?? '';
+      _location = _batchData.location ?? 'Shelf';
+      if (!['Shelf', 'Carton'].contains(_location)) {
+        _location = 'Shelf';
+      }
       _date = DateTime.parse(_batchData.date ?? '');
       _expiry = _batchData.expiry != null
           ? DateTime.parse(_batchData.expiry ?? '')
@@ -115,7 +118,7 @@ class _AddEditBatchState extends State<AddEditBatch> {
         sellingPrice: double.parse(_sellPriceController.text),
         cess: double.parse(_cessController.text));
     await StoreRepository().updateBatch(newBatch);
-    Navigator.pop(context);
+    // Navigator.pop(context);
   }
 
   @override
